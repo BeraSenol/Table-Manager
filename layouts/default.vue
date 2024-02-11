@@ -12,6 +12,11 @@ const route = useRoute();
 const links = [
   [
     {
+      label: ""
+    },
+  ],
+  [
+    {
       label: "Home",
       icon: "i-heroicons-home",
       to: "/home",
@@ -20,23 +25,28 @@ const links = [
   [
     {
       label: "Tables",
-      icon: "material-symbols:table-restaurant-outline-rounded",
+      icon: "i-material-symbols:table-restaurant-outline-rounded",
       to: "/tables",
     },
   ],
   [
     {
       label: "Tickets",
-      icon: "material-symbols:receipt-long-outline-rounded",
+      icon: "i-material-symbols:receipt-long-outline-rounded",
       to: "/tickets",
     },
   ],
   [
     {
       label: "Settings",
-      icon: "ion:settings-outline",
+      icon: "i-ion:settings-outline",
       to: "/settings",
     },
   ],
+  [
+    {
+      label: ""
+    },
+  ]
 ];
 </script>
