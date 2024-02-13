@@ -2,24 +2,19 @@
   <UHorizontalNavigation
     :links="links"
     class="border-b border-gray-200 dark:border-gray-800"
+    :ui="{ label: 'text-lg font-normal' }"
   />
   <slot />
 </template>
 
 <script setup>
-const route = useRoute();
-
 const links = [
-  [
-    {
-      label: ""
-    },
-  ],
+  [],
   [
     {
       label: "Home",
       icon: "i-heroicons-home",
-      to: "/home",
+      to: "/",
     },
   ],
   [
@@ -43,10 +38,6 @@ const links = [
       to: "/settings",
     },
   ],
-  [
-    {
-      label: ""
-    },
-  ]
+  [],
 ];
 </script>

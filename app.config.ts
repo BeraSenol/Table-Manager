@@ -1,10 +1,9 @@
 export default defineAppConfig({
-    ui: {
-      icons: {
-        dynamic: true
-      },
-      primary: 'cyan',
-      gray: 'slate'
+  ui: {
+    primary: 'green',
+    gray: 'slayte',
+    icons: {
+      dynamic: true
     }
-  })
-  
+  }
+})
