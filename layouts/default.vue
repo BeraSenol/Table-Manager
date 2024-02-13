@@ -1,7 +1,7 @@
 <template>
   <UHorizontalNavigation
     :links="links"
-    class="border-b border-gray-200 dark:border-gray-800"
+    class="border-b border-slate-200 dark:border-slate-800"
     :ui="{ label: 'text-lg font-normal' }"
   />
   <slot />
