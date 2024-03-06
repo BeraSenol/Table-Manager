@@ -10,98 +10,22 @@
       v-for="(card, index) in cards"
     >
       <template #header>
-        <p class="text-xl">Table {{ card.tableNumber }}</p>
-        <p class="font-thin italic">
-          {{ card.guestCount }}
-          <template v-if="card.guestCount === 1">
-            {{ description.guest.single }}
-          </template>
-          <template v-else>
-            {{ description.guest.multiple }}
-          </template>
-        </p>
-        <UBadge color="primary" variant="soft">Ready</UBadge>
+        <TablesCardsHeader
+          :table-number="card.tableNumber"
+          :guest-count="card.guestCount"
+        />
       </template>
-      <UDivider
-        :ui="{ label: 'text-primary-500 dark:text-primary-400 text-base' }"
-        type="dashed"
-        label="Anti Pasti"
+      <TablesCardsAntiPasti :anti-pasti-count="card.antiPastiCount" />
+      <TablesCardsPrimiPiatti :primi-piatti-count="card.primiPiattiCount" />
+      <TablesCardsSecondiPiatti
+        :secondi-piatti-count="card.secondiPiattiCount"
       />
-      <p class="my-4 mb-2 font-thin italic">
-        {{ card.antiPastiCount }}
-        <template v-if="card.antiPastiCount === 1">
-          {{ description.antiPasti.single }}
-        </template>
-        <template v-else>
-          {{ description.antiPasti.multiple }}
-        </template>
-      </p>
-      <UButton class="m-0.5 mb-6" size="2xs" color="red" variant="outline">
-        Wait
-      </UButton>
-      <UButton class="m-0.5 mb-6" size="2xs" color="orange" variant="outline">
-        Busy
-      </UButton>
-      <UButton class="m-0.5 mb-6" size="2xs" color="primary" variant="outline">
-        Done
-      </UButton>
-      <UDivider
-        :ui="{ label: 'text-primary-500 dark:text-primary-400 text-base' }"
-        type="dashed"
-        label="Primi Piatti"
-      />
-      <p class="my-4 font-thin italic">
-        {{ card.primiPiattiCount }}
-        <template v-if="card.primiPiattiCount === 1">
-          {{ description.primiPiatti.single }}
-        </template>
-        <template v-else>
-          {{ description.primiPiatti.multiple }}
-        </template>
-      </p>
-      <UDivider
-        :ui="{ label: 'text-primary-500 dark:text-primary-400 text-base' }"
-        type="dashed"
-        label="Secondi Piatti"
-      />
-      <p class="my-4 font-thin italic">
-        {{ card.secondiPiattiCount }}
-        <template v-if="card.secondiPiattiCount === 1">
-          {{ description.secondiPiatti.single }}
-        </template>
-        <template v-else>
-          {{ description.secondiPiatti.multiple }}
-        </template>
-      </p>
-      <UDivider
-        :ui="{ label: 'text-primary-500 dark:text-primary-400 text-base' }"
-        type="dashed"
-        label="Dolce"
-      />
-      <p class="mt-4 font-thin italic">
-        {{ card.dolceCount }}
-        <template v-if="card.dolceCount === 1">
-          {{ description.dolce.single }}
-        </template>
-        <template v-else>
-          {{ description.dolce.multiple }}
-        </template>
-      </p>
+      <TablesCardsDolce :dolce-count="card.primiPiattiCount" />
 
       <template #footer>
-        <p class="font-thin italic">
-          {{ totalPlatesPerTable(index) }}
-          <template
-            v-if="
-              totalPlatesPerTable(index) >= 2 || totalPlatesPerTable(index) == 0
-            "
-          >
-            {{ description.plates.multiple }}
-          </template>
-          <template v-else>
-            {{ description.plates.single }}
-          </template>
-        </p>
+        <TablesCardsFooter
+          :plate-count="totalPlatesPerTable(card.tableNumber)"
+        />
       </template>
     </UCard>
   </UContainer>
