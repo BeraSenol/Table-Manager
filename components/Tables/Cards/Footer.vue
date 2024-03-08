@@ -10,6 +10,9 @@
 const props = defineProps({
   plateCount: {
     type: Number,
+  },
+  tableNumber: {
+    type: Number,
     required: true,
   },
 });

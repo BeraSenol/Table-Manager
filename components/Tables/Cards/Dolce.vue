@@ -1,8 +1,14 @@
 <template>
   <UDivider
-    :ui="{ label: 'text-primary-500 dark:text-primary-400 text-base' }"
+    :ui="{
+      label: 'text-primary-500 dark:text-primary-400 text-base',
+      border: {
+        base: 'border-primary-200 dark:border-primary-800',
+      },
+    }"
     type="dashed"
     label="Dolce"
+    size="xs"
   />
   <p class="mt-4 font-thin italic">
     {{ dolceCount }}

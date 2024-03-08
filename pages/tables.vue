@@ -1,11 +1,11 @@
 <template>
   <UContainer class="w-full mt-4 flex flex-wrap">
     <UCard
-      class="min-w-56 max-w-80 mx-2 text-center"
+      class="min-w-56 max-w-80 mx-2 text-center max-h-min"
       :ui="{
         background: 'bg-white dark:bg-gray-900',
         divide: 'divide-y divide-slate-200 dark:divide-slate-800',
-        ring: 'ring-2 ring-primary-200 dark:ring-primary-800',
+        ring: 'ring-2 ring-primary-100 dark:ring-primary-900',
       }"
       v-for="(card, index) in cards"
     >
@@ -15,7 +15,11 @@
           :guest-count="card.guestCount"
         />
       </template>
-      <TablesCardsAntiPasti :anti-pasti-count="card.antiPastiCount" />
+      <TablesCardsAntiPasti
+        :anti-pasti-count="card.antiPastiCount"
+        :table-number="card.tableNumber"
+        v-if="card.antiPastiCount > 0"
+      />
       <TablesCardsPrimiPiatti :primi-piatti-count="card.primiPiattiCount" />
       <TablesCardsSecondiPiatti
         :secondi-piatti-count="card.secondiPiattiCount"
@@ -24,7 +28,13 @@
 
       <template #footer>
         <TablesCardsFooter
-          :plate-count="totalPlatesPerTable(card.tableNumber)"
+          :table-number="card.tableNumber"
+          :plate-count="
+            cards[index].antiPastiCount +
+            cards[index].primiPiattiCount +
+            cards[index].secondiPiattiCount +
+            cards[index].dolceCount
+          "
         />
       </template>
     </UCard>
@@ -32,42 +42,7 @@
 </template>
 
 <script setup lang="ts">
-const description = {
-  guest: {
-    single: "Guest",
-    multiple: "Guests",
-  },
-  antiPasti: {
-    single: "Appetizer",
-    multiple: "Appetizers",
-  },
-  primiPiatti: {
-    single: "First Course",
-    multiple: "First Courses",
-  },
-  secondiPiatti: {
-    single: "Second Course",
-    multiple: "Second Courses",
-  },
-  dolce: {
-    single: "Dessert",
-    multiple: "Desserts",
-  },
-  plates: {
-    single: "Plate",
-    multiple: "Plates",
-  },
-};
-
-function totalPlatesPerTable(tableNumber: number): any {
-  return (
-    cards[tableNumber].antiPastiCount +
-    cards[tableNumber].dolceCount +
-    cards[tableNumber].primiPiattiCount +
-    cards[tableNumber].secondiPiattiCount
-  );
-}
-
+const tableState = useTableState();
 const cards = [
   {
     tableNumber: 1,
