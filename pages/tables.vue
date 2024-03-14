@@ -3,9 +3,9 @@
     <UCard
       class="min-w-56 max-w-80 mx-2 text-center max-h-min"
       :ui="{
-        background: 'bg-white dark:bg-gray-900',
-        divide: 'divide-y divide-slate-200 dark:divide-slate-800',
-        ring: 'ring-2 ring-primary-100 dark:ring-primary-900',
+        background: 'bg-white dark:bg-slate-950',
+        divide: 'divide-y divide-primary-200 dark:divide-primary-800',
+        ring: 'ring-primary-100 dark:ring-primary-900',
       }"
       v-for="(card, index) in cards"
     >
@@ -20,11 +20,21 @@
         :table-number="card.tableNumber"
         v-if="card.antiPastiCount > 0"
       />
-      <TablesCardsPrimiPiatti :primi-piatti-count="card.primiPiattiCount" />
+      <TablesCardsPrimiPiatti
+        :primi-piatti-count="card.primiPiattiCount"
+        :table-number="card.tableNumber"
+        v-if="card.primiPiattiCount > 0"
+      />
       <TablesCardsSecondiPiatti
         :secondi-piatti-count="card.secondiPiattiCount"
+        :table-number="card.tableNumber"
+        v-if="card.secondiPiattiCount > 0"
       />
-      <TablesCardsDolce :dolce-count="card.primiPiattiCount" />
+      <TablesCardsDolce
+        :dolce-count="card.primiPiattiCount"
+        :table-number="card.tableNumber"
+        v-if="card.dolceCount > 0"
+      />
 
       <template #footer>
         <TablesCardsFooter
@@ -51,6 +61,10 @@ const cards = [
     primiPiattiCount: 1,
     secondiPiattiCount: 1,
     dolceCount: 1,
+    antiPastiState: "",
+    primiPiattiState: "",
+    secondiPiattiState: "",
+    dolceState: "",
   },
   {
     tableNumber: 2,
@@ -78,11 +92,11 @@ const cards = [
   },
   {
     tableNumber: 5,
-    guestCount: 1,
+    guestCount: 5,
     antiPastiCount: 0,
-    primiPiattiCount: 0,
-    secondiPiattiCount: 1,
-    dolceCount: 0,
+    primiPiattiCount: 5,
+    secondiPiattiCount: 5,
+    dolceCount: 3,
   },
 ];
 </script>

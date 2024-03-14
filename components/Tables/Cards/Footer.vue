@@ -4,6 +4,14 @@
     <template v-if="plateCount === 1"> Plate </template>
     <template v-else> Plates </template>
   </p>
+  <UButton
+    icon="i-material-symbols:receipt-long-outline-rounded"
+    size="sm"
+    color="primary"
+    variant="link"
+    label="Ticket"
+    :trailing="true"
+  />
 </template>
 
 <script lang="ts" setup>
